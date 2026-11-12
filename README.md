@@ -1,6 +1,10 @@
-# Earth 75 Ma 0.0.7 (TEST BUILD)
+# Earth 75 Ma 0.0.8 (TEST BUILD)
 
-## What is new in 0.0.7
+## What is new in 0.0.8
+
+- **Extant fauna mode** dropdown (`lopExtantFaunaMode`: auto / on / off, default auto) in the LoP Dinosaurs tab of world creation. Auto = off in a Campanian world, else LoP-Core's lopcore.json decides. Needs LoP-Core 1.5.5+. The 0.0.7 tickbox `lopExtantFauna` stays declared but hidden for older worlds. Everything else is as in 0.0.7.
+
+## What was new in 0.0.7
 
 - **One start dropdown**: Earth Worldgen's `Where you start` (earthSpawnRegion) now also lists the 17 Campanian fossil sites (`site-<code>`). Pick one in a Campanian world and the server sets the fossil site and resets the region to `centre`; in a Modern world a site entry is ignored (logged). `Start at` (earthSpawnPlace) behaves as before and overrides both. The 0.0.6 `Where you start (by era)` (earth75maStart) is kept as a hidden legacy attribute so saved 0.0.6 worlds still work. Needs an in-game look: this relies on this mod's attribute winning the shared UI slot (mod name sorts first).
 - **Extant fauna (vanilla animals)** tickbox (`lopExtantFauna`, default on). This mod has no code for it: LoP-Core 1.5.3+ reads the world setting. Without LoP-Core it has no effect.

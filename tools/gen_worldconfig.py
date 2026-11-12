@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""earth75ma 0.0.7: regenerate ONLY worldconfig.json + worldconfig-lang-en.generated.json without the GPlates/mask pipeline.
+"""earth75ma 0.0.8: regenerate ONLY worldconfig.json + worldconfig-lang-en.generated.json without the GPlates/mask pipeline.
 Executes the world-config block of build_tables.py (single source) with presets/sites read from the shipped spawnpresets-75ma.json.
 usage: gen_worldconfig.py <src folder> <mod folder> <stock EWG unpack> <spawnpresets-75ma.json>"""
 import json, os, sys

@@ -4,7 +4,7 @@ name, era, region = sys.argv[1:4]
 run = os.path.join(S, "verify", name)
 if not os.path.exists(run):
     subprocess.run(["powershell", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File", r"C:\Work\vs\master-verify\make-verify-run.ps1",
-                    "-SessionDir", S, "-RunName", name, "-TestZip", os.path.join(S, "earth75ma-0.0.7.zip")], check=True)
+                    "-SessionDir", S, "-RunName", name, "-TestZip", os.path.join(S, "earth75ma-0.0.8.zip")], check=True)
     for f in os.listdir(os.path.join(run, "mods")):
         if f.lower().startswith("earthworldgen") or f.startswith("earth75ma"):
             continue

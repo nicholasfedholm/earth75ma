@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""earth75ma 0.0.7: check the shipped worldconfig.json and lang file for the era-prefixed start dropdown.
+"""earth75ma 0.0.8: check the shipped worldconfig.json and lang file for the era-prefixed start dropdown.
 usage: check_start_dropdown.py <mod folder> <stock EWG unpack folder>   (exit 0 = pass)"""
 import json, os, sys
 MOD, EWG = sys.argv[1], sys.argv[2]

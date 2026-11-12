@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Assemble the earth75ma 0.0.7 mod folder and zip.
+"""Assemble the earth75ma 0.0.8 mod folder and zip.
 
 usage: package.py <work folder>
 Run after build_tables.py and after `dotnet build` (DLL in <src>/build/earth75ma.dll).
@@ -11,8 +11,8 @@ for Campanian worlds only.
 import hashlib, json, os, shutil, sys, zipfile
 
 WORK = sys.argv[1]
-VERSION = "0.0.7"
-SRC = WORK   # 0.0.7: session folder is the source folder
+VERSION = "0.0.8"
+SRC = WORK   # 0.0.8: session folder is the source folder
 MOD = os.path.join(WORK, f"earth75ma-{VERSION}")
 ZIP = os.path.join(WORK, f"earth75ma-{VERSION}.zip")
 COMPAT_IN = os.path.join("C:/Work/vs/vs_scratch/cretaceous-75ma-detailed-map-20261110", "grok-audit-20261111", "out", "earth75ma-compat", "assets", "earth75ma", "compatibility", "earthworldgen")

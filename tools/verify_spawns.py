@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Independent check of the shipped earth75ma 0.0.7 spawn table and place lists.
+"""Independent check of the shipped earth75ma 0.0.8 spawn table and place lists.
 
 usage: verify_spawns.py <mod folder> <out folder> <stock EWG unpack folder>
 Reads the SHIPPED files only (spawnpresets-75ma.json, the 75 Ma oceanmask/freshmask, the 75 Ma places lists),

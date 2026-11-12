@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""earth75ma 0.0.7 table generator.
+"""earth75ma 0.0.8 table generator.
 
 Rotates modern lat/lon to 75 Ma with the GPlates Web Service (model PALEOMAP,
 the same call that produced modern_to_75Ma_coords.csv), checks every point
@@ -9,7 +9,7 @@ paleo-continent, and writes the JSON tables the mod ships.
 usage: build_tables.py <work folder> <stock EWG unpack folder> [--offline]
 
 Reads only: the 75 Ma masks (never written), the stock EWG place lists, the CSV.
-Writes only under <work>/earth75ma-0.0.7 and <work>/earth75ma-0.0.7-src.
+Writes only under <work>/earth75ma-0.0.8 and <work>/earth75ma-0.0.8-src.
 """
 import base64, csv, json, math, os, sys, time, unicodedata, urllib.request
 import numpy as np
@@ -23,8 +23,8 @@ SUFFIX_NOPOS = " (nearest land)"    # stock place with no 75 Ma position at all 
 WORK = sys.argv[1]
 EWG = sys.argv[2]
 OFFLINE = "--offline" in sys.argv
-SRC = os.path.join(WORK, "earth75ma-0.0.7-src")
-MOD = os.path.join(WORK, "earth75ma-0.0.7")
+SRC = os.path.join(WORK, "earth75ma-0.0.8-src")
+MOD = os.path.join(WORK, "earth75ma-0.0.8")
 CACHE = os.path.join(SRC, "cache", "gws_paleomap75_points.json")
 COMPAT_IN = os.path.join(WORK, "grok-audit-20261111", "out", "earth75ma-compat",
                          "assets", "earth75ma", "compatibility", "earthworldgen")
@@ -407,7 +407,7 @@ assert all(p["code"] in EWG_REGIONS for p in presets), "preset code not an EWG r
 start_values = (["ewg"] + [f"modern-{r}" for r in EWG_REGIONS] + [f"75ma-{p['code']}" for p in presets]
                 + [f"75ma-site-{s['code']}" for s in sites])
 assert len(start_values) == len(set(start_values)) == 1 + len(EWG_REGIONS) + len(presets) + len(sites)
-# 0.0.7: ONE merged dropdown. Our earthSpawnRegion copies EWG's definition exactly (same code/default 'centre') and appends the
+# 0.0.8: ONE merged dropdown. Our earthSpawnRegion copies EWG's definition exactly (same code/default 'centre') and appends the
 # fossil sites as site-<code>; it wins the UI slot (sorts first by mod name). earth75maStart stays as a hidden LEGACY attribute.
 import copy
 merged = copy.deepcopy(ewg_reg[0])
@@ -421,7 +421,11 @@ wc = {"playstyles": [], "worldConfigAttributes": [{
     "category": "earth", "code": "earth75maStart", "dataType": "dropdown",
     "values": start_values, "names": list(start_values),
     "default": "ewg", "onlyDuringWorldCreate": True, "onCustomizeScreen": False}, {
-    "category": "earth", "code": "lopExtantFauna", "dataType": "bool", "default": "true", "onlyDuringWorldCreate": True}]}
+    "category": "earth", "code": "lopExtantFauna", "dataType": "bool", "default": "true", "onlyDuringWorldCreate": True,
+    "onCustomizeScreen": False}, {
+    "category": "lop", "code": "lopExtantFaunaMode", "dataType": "dropdown",
+    "values": ["auto", "on", "off"], "names": ["auto", "on", "off"],
+    "default": "auto", "onlyDuringWorldCreate": True}]}
 json.dump(wc, open(os.path.join(MOD, "worldconfig.json"), "w"), indent="\t")
 lang = {"worldattribute-earthEra": 'Earth era',
         "worldattribute-earthEra-desc": "Which Earth's geography this world is generated from. Campanian is Earth 75 million years ago: different continents, an inland sea across North America, no polar ice. Applies when the world is created; it cannot be changed afterwards.",
@@ -435,8 +439,14 @@ lang = {"worldattribute-earthEra": 'Earth era',
         "worldconfig-earth75maStart-ewg": "Same as Where you start",
         "worldattribute-earthSpawnRegion": "Where you start (region or fossil site)",
         "worldattribute-earthSpawnPlace": "Start at (place name or lat, lon; overrides Where you start)",
-        "worldattribute-lopExtantFauna": "Extant fauna (vanilla animals)",
-        "worldattribute-lopExtantFauna-desc": "Untick for a dino-only world: no new natural spawns of vanilla animals (needs LoP-Core 1.5.3+; drifters and other temporal creatures are unaffected)."}
+        "worldattribute-lopExtantFauna": "Extant fauna (vanilla animals) (legacy, hidden)",
+        "worldattribute-lopExtantFauna-desc": "Untick for a dino-only world: no new natural spawns of vanilla animals (needs LoP-Core 1.5.3+; drifters and other temporal creatures are unaffected). Superseded by Extant fauna mode; kept so worlds made with 0.0.8 still work.",
+        "worldconfig-category-lop": "LoP Dinosaurs",
+        "worldattribute-lopExtantFaunaMode": "Extant fauna (vanilla animals)",
+        "worldattribute-lopExtantFaunaMode-desc": "Whether modern vanilla animals spawn naturally (needs LoP-Core 1.5.5+; drifters and other temporal creatures are unaffected). Auto turns them off in a Campanian 75 Ma world and otherwise follows lopcore.json.",
+        "worldconfig-lopExtantFaunaMode-auto": "Auto (off in Campanian, else lopcore.json)",
+        "worldconfig-lopExtantFaunaMode-on": "On (modern animals spawn)",
+        "worldconfig-lopExtantFaunaMode-off": "Off (no modern animals)"}
 assert "worldattribute-earthSpawnPlace" in ewg_lang
 for r in EWG_REGIONS:
     lang[f"worldconfig-earthSpawnRegion-{r}"] = ewg_lang[f"worldconfig-earthSpawnRegion-{r}"]
