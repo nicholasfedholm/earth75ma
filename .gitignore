@@ -1,0 +1,10 @@
+*.zip
+*.dll
+*.pdb
+*.exe
+bin/
+obj/
+build/
+Cache/
+verify/
+__pycache__/
