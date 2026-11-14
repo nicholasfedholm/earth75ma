@@ -20,6 +20,10 @@
       <HintPath>$(VintageStoryDir)\VintagestoryAPI.dll</HintPath>
       <Private>false</Private>
     </Reference>
+    <Reference Include="VSEssentials">
+      <HintPath>$(VintageStoryDir)\Mods\VSEssentials.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
     <Reference Include="0Harmony">
       <HintPath>$(VintageStoryDir)\Lib\0Harmony.dll</HintPath>
       <Private>false</Private>

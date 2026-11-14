@@ -3,8 +3,8 @@
 	"modid": "earth75ma",
 	"name": "Earth 75 Ma",
 	"authors": [ "Nick" ],
-	"description": "TEST BUILD 0.0.8. Add-on for Earth Worldgen 1.0.0: adds an Era choice (Modern / Campanian 75 Ma) to the Earth tab of world creation. Modern worlds are stock Earth Worldgen. Campanian worlds use a Late Cretaceous (75 Ma) Earth, with spawn presets and named places moved to where they were 75 million years ago, and 17 fossil sites as start points. Made for Quarter Earth.",
-	"version": "0.0.8",
+	"description": "STAGED BRANCH BUILD 0.0.9-addons (not a release). Also contains the former Earth Flagships, Earth Flora Realms and Oregon Ebony add-ons as modules, each with a switch in ModConfig/earth75ma.json. Add-on for Earth Worldgen 1.0.0: adds an Era choice (Modern / Campanian 75 Ma) to the Earth tab of world creation. Modern worlds are stock Earth Worldgen. Campanian worlds use a Late Cretaceous (75 Ma) Earth, with spawn presets and named places moved to where they were 75 million years ago, and 17 fossil sites as start points. Made for Quarter Earth.",
+	"version": "0.0.9",
 	"side": "Universal",
 	"requiredOnClient": false,
 	"dependencies": {

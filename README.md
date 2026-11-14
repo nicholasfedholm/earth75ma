@@ -65,3 +65,13 @@ A world created with 0.0.3 (which had no era and was always 75 Ma) is recognised
 - `assets/earth75ma/config/75ma/*.json`: 8 tables (75 Ma), including the two places lists.
 - `assets/earth75ma/config/spawnpresets-75ma.json`, `modern2paleo-75ma.json`: spawn table and the modern to 75 Ma lookup grid.
 - `assets/game/lang/worldconfig-en.json`: labels.
+
+## Modules (0.0.9-addons staged branch build)
+
+This build folds three former add-ons into the one `earth75ma` mod (single modid). The era system (Modern / Campanian 75 Ma) is unchanged from 0.0.8. Each module is inert unless the world config has `earthWorldgen=true`, and each has a switch in `ModConfig/earth75ma.json` (all default on):
+
+- `Flagships` (ex earthflagships 1.1.0): keeps 14 flagship LoP dinosaur families in their fossil home regions by vetoing natural spawns outside them. `Enabled` plus one switch per family. Never touches bred, tamed, placed or already-loaded animals.
+- `Flora` (ex earthflora 1.0.0): keeps Floral Zones plants in their home floristic regions. `Enabled`, `GateBlockPatches`, `GateTrees`.
+- `Ebony` (ex oregonebony 0.1.0): ebony tree generation row for cool, very wet temperate forest (Pacific Northwest envelope). `Enabled`. New chunks only.
+
+If `ModConfig/earth75ma.json` does not exist yet, the values of an existing `ModConfig/earthflagships.json` and `ModConfig/earthflora.json` are copied into it once; the old files are left untouched and no longer read. Do not run the old standalone add-ons together with this build.

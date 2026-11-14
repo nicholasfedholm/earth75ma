@@ -1,0 +1,21 @@
+[
+	// Oregon Ebony 0.1.0: one treegen row, same mechanism Earth itself uses in
+	// earthtrees.json to place ebony in the Sudan savanna and the Deccan.
+	// Envelope targets the coastal Pacific Northwest climate: climate temp
+	// 8-17 C, rain index 185-255 (Portland samples 215), real forest.
+	// Honest side effect: climate envelopes are not geography. The same cool,
+	// very wet forest climate also occurs in southern Chile, the New Zealand
+	// west coast and a few other temperate rainforest pockets, and ebony can
+	// appear there too in newly generated chunks. Existing chunks never change.
+	// Weight 12 is deliberately modest (local firs run 80-100), so ebony
+	// shows up as an occasional tree in a stand, not a takeover.
+	{
+		"op": "add", "file": "game:worldgen/treengenproperties.json", "path": "/treegens/-",
+		"condition": { "when": "earthWorldgen", "isValue": "true" }, "side": "Server",
+		"value": { "Generator": "ebony", "Weight": 12, "MinSize": 0.1, "MaxSize": 0.9,
+			"SuitabilitySizeBonus": 0.4,
+			"MinTemp": 8, "MaxTemp": 17, "MinRain": 185, "MaxRain": 255,
+			"MinFert": 30, "MaxFert": 255, "MinForest": 90, "MaxForest": 255,
+			"MinHeight": 0.0, "MaxHeight": 0.85 }
+	}
+]
